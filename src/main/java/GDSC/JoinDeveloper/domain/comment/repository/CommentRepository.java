@@ -8,4 +8,10 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     Comment save(Comment comment);
     Optional<Comment> findById(Long id);
+
+    @Override
+    boolean existsById(Long id);
+
+    @Override
+    void delete(Comment entity);
 }

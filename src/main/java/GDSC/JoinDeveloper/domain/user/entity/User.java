@@ -27,12 +27,18 @@ public class User {
     private String language;
 
     @Builder
-    public User(String email, String password, String name, String phoneNum, Part part, String language){
+    public User(String email, String password, String name, String phoneNum, Part part){
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNum = phoneNum;
         this.part = part;
+    }
+
+    //비즈니스 로직
+
+    //언어 설정
+    public void selectLanguage(String language){
         this.language = language;
     }
 }

@@ -2,6 +2,7 @@ package GDSC.JoinDeveloper.domain.participation.entity;
 
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.user.entity.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,10 @@ public class Participation {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @Builder
+    public Participation(User user, Post post){
+        this.user = user;
+        this.post = post;
+    }
 }
