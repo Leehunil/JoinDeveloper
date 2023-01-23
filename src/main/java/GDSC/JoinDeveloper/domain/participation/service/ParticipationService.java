@@ -1,6 +1,7 @@
 package GDSC.JoinDeveloper.domain.participation.service;
 
 import GDSC.JoinDeveloper.domain.participation.dto.request.ParticipationDto;
+import GDSC.JoinDeveloper.domain.participation.dto.response.ShowUserParInfoDto;
 import GDSC.JoinDeveloper.domain.participation.entity.Participation;
 import GDSC.JoinDeveloper.domain.participation.repository.ParticipationRepository;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
@@ -11,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,18 +23,26 @@ public class ParticipationService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
-    //참여하기
+    //참여 하기
     @Transactional
     public void saveParticipation(ParticipationDto participationDto){
         User findUser = userRepository.findById(participationDto.getUserId()).get();
         Post findPost = postRepository.findById(participationDto.getPostId()).get();
 
-        participationRepository.save(Participation.builder()
+        Participation participation = participationRepository.save(Participation.builder()
                 .user(findUser)
                 .post(findPost)
                 .build());
         findUser.selectLanguage(participationDto.getLanguage());
         findPost.addCurrentNum();
+    }
+
+    //사용자 참여한 게시물들 보여주기
+    public List<ShowUserParInfoDto> showUserParInfo(Long userId){
+        List<Participation> participations = participationRepository.findByUserId(userId);
+        return participations.stream()
+                .map(participation -> new ShowUserParInfoDto(participation))
+                .collect(Collectors.toList());
     }
 
 }

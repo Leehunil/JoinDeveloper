@@ -1,22 +1,26 @@
 package GDSC.JoinDeveloper.domain.user.entity;
 
+import GDSC.JoinDeveloper.domain.post.entity.Post;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id @GeneratedValue
     @Column(name = "user_id")
     private Long id;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
 
     private String email;
     private String password;
@@ -40,5 +44,10 @@ public class User {
     //언어 설정
     public void selectLanguage(String language){
         this.language = language;
+    }
+
+    //내가 만든 게시물 추가 로직
+    public void addPost(Post post){
+        this.posts.add(post);
     }
 }

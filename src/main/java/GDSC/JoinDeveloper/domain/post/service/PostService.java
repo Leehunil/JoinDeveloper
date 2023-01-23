@@ -38,7 +38,7 @@ public class PostService {
                         .currentNum(1)
                         .build()
         ).getId();
-
+        findUser.addPost(postRepository.findByPostId(postId).get());
         return postId;
     }
 
