@@ -12,4 +12,7 @@ public class UpdateCommentDto {
         this.commentId = commentId;
         this.letter = letter;
     }
+
+    public UpdateCommentDto() {
+    }
 }

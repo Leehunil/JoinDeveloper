@@ -1,4 +1,4 @@
-package GDSC.JoinDeveloper.domain.user.dto.response;
+package GDSC.JoinDeveloper.domain.participation.dto.response;
 
 import GDSC.JoinDeveloper.domain.post.dto.response.PostsResponseDto;
 import GDSC.JoinDeveloper.domain.user.entity.User;

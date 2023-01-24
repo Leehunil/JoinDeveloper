@@ -11,8 +11,11 @@ import java.util.Optional;
 public interface ParticipationRepository extends JpaRepository<Participation, Long> {
     Participation save(Participation participation);
     Optional<Participation> findById(Long id);
+    @Override
+    boolean existsById(Long id);
 
     @Query("select pa from Participation pa join fetch pa.user u join fetch pa.post p " +
             "where u.id = userId")
     List<Participation> findByUserId(@Param("userId") Long userId);
+
 }

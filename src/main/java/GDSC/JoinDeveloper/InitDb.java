@@ -27,7 +27,7 @@ public class InitDb {
     @Component
     @Transactional
     @RequiredArgsConstructor
-    public class InitService{
+    static class InitService{
 
         private final EntityManager em;
 

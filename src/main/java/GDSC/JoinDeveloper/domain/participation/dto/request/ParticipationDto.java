@@ -14,4 +14,7 @@ public class ParticipationDto {
         this.postId = postId;
         this.language = language;
     }
+
+    public ParticipationDto() {
+    }
 }

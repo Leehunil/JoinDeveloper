@@ -6,6 +6,7 @@ import GDSC.JoinDeveloper.domain.participation.entity.Participation;
 import GDSC.JoinDeveloper.domain.participation.repository.ParticipationRepository;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.post.repository.PostRepository;
+import GDSC.JoinDeveloper.domain.participation.dto.response.ShowUserPostDto;
 import GDSC.JoinDeveloper.domain.user.entity.User;
 import GDSC.JoinDeveloper.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class ParticipationService {
 
     //참여 하기
     @Transactional
-    public void saveParticipation(ParticipationDto participationDto){
+    public Boolean saveParticipation(ParticipationDto participationDto){
         User findUser = userRepository.findById(participationDto.getUserId()).get();
         Post findPost = postRepository.findById(participationDto.getPostId()).get();
 
@@ -35,6 +36,7 @@ public class ParticipationService {
                 .build());
         findUser.selectLanguage(participationDto.getLanguage());
         findPost.addCurrentNum();
+        return participationRepository.existsById(participation.getId());
     }
 
     //사용자 참여한 게시물들 보여주기
