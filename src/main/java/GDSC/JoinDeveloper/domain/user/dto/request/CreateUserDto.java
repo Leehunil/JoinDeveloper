@@ -19,4 +19,7 @@ public class CreateUserDto {
         this.phoneNum = phoneNum;
         this.part = part;
     }
+
+    public CreateUserDto() {
+    }
 }

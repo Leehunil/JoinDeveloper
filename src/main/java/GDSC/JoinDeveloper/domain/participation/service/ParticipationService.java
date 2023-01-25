@@ -1,12 +1,12 @@
 package GDSC.JoinDeveloper.domain.participation.service;
 
 import GDSC.JoinDeveloper.domain.participation.dto.request.ParticipationDto;
+import GDSC.JoinDeveloper.domain.participation.dto.response.ShowPostParUserInfoDto;
 import GDSC.JoinDeveloper.domain.participation.dto.response.ShowUserParInfoDto;
 import GDSC.JoinDeveloper.domain.participation.entity.Participation;
 import GDSC.JoinDeveloper.domain.participation.repository.ParticipationRepository;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.post.repository.PostRepository;
-import GDSC.JoinDeveloper.domain.participation.dto.response.ShowUserPostDto;
 import GDSC.JoinDeveloper.domain.user.entity.User;
 import GDSC.JoinDeveloper.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +44,14 @@ public class ParticipationService {
         List<Participation> participations = participationRepository.findByUserId(userId);
         return participations.stream()
                 .map(participation -> new ShowUserParInfoDto(participation))
+                .collect(Collectors.toList());
+    }
+
+    //방에 참여한 인원들 보여주기
+    public List<ShowPostParUserInfoDto> showPostParUserInfo(Long postId){
+        List<Participation> participations = participationRepository.findByPostId(postId);
+        return participations.stream()
+                .map(participation -> new ShowPostParUserInfoDto(participation))
                 .collect(Collectors.toList());
     }
 

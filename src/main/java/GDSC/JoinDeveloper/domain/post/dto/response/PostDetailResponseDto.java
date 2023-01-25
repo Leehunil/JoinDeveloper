@@ -1,11 +1,10 @@
 package GDSC.JoinDeveloper.domain.post.dto.response;
 
 import GDSC.JoinDeveloper.domain.comment.dto.response.CommentDetailResponseDto;
-import GDSC.JoinDeveloper.domain.comment.entity.Comment;
+import GDSC.JoinDeveloper.domain.post.entity.PersonnelStatus;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +15,7 @@ public class PostDetailResponseDto {
     private String contents;
     private Integer recruitmentNum;
     private Integer currentNum;
+    private PersonnelStatus personnelStatus;
 
     private String name;
 
@@ -26,6 +26,7 @@ public class PostDetailResponseDto {
         this.contents = post.getContents();
         this.recruitmentNum = post.getRecruitmentNum();
         this.currentNum = post.getCurrentNum();
+        this.personnelStatus = post.getPersonnelStatus();
         this.name = post.getUser().getName();
         this.comments = post.getComments().stream()
                 .map(comment -> new CommentDetailResponseDto(comment))

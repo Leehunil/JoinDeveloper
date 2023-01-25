@@ -15,4 +15,7 @@ public class PostUpdateRequestDto {
         this.contents = contents;
         this.recruitmentNum = recruitmentNum;
     }
+
+    public PostUpdateRequestDto() {
+    }
 }

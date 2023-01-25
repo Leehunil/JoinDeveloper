@@ -1,5 +1,6 @@
 package GDSC.JoinDeveloper.domain.post.dto.response;
 
+import GDSC.JoinDeveloper.domain.post.entity.PersonnelStatus;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import lombok.Getter;
 

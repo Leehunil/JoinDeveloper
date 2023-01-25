@@ -4,6 +4,7 @@ import GDSC.JoinDeveloper.domain.post.dto.request.CreatePostDto;
 import GDSC.JoinDeveloper.domain.post.dto.request.PostUpdateRequestDto;
 import GDSC.JoinDeveloper.domain.post.dto.response.PostDetailResponseDto;
 import GDSC.JoinDeveloper.domain.post.dto.response.PostsResponseDto;
+import GDSC.JoinDeveloper.domain.post.entity.PersonnelStatus;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.post.repository.PostRepository;
 import GDSC.JoinDeveloper.domain.user.entity.User;
@@ -36,9 +37,10 @@ public class PostService {
                         .postTime(LocalDateTime.now())
                         .recruitmentNum(createPostDto.getRecruitmentNum())
                         .currentNum(1)
+                        .personnelStatus(PersonnelStatus.POSSIBLE)
                         .build()
         ).getId();
-        findUser.addPost(postRepository.findByPostId(postId).get());
+        findUser.addPost(postRepository.findById(postId).get());
         return postId;
     }
 

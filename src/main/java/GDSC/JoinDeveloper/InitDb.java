@@ -2,6 +2,7 @@ package GDSC.JoinDeveloper;
 
 import GDSC.JoinDeveloper.domain.comment.entity.Comment;
 import GDSC.JoinDeveloper.domain.participation.entity.Participation;
+import GDSC.JoinDeveloper.domain.post.entity.PersonnelStatus;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.user.entity.Part;
 import GDSC.JoinDeveloper.domain.user.entity.User;
@@ -41,9 +42,9 @@ public class InitDb {
             em.persist(user2);
             em.persist(user3);
 
-            Post post1 = new Post(user1,"1","1", LocalDateTime.now(),4,1);
-            Post post2 = new Post(user2,"2","2", LocalDateTime.now(),4,1);
-            Post post3 = new Post(user3,"3","3", LocalDateTime.now(),4,1);
+            Post post1 = new Post(user1,"1","1", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
+            Post post2 = new Post(user2,"2","2", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
+            Post post3 = new Post(user3,"3","3", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
 
             em.persist(post1);
             em.persist(post2);

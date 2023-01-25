@@ -16,4 +16,7 @@ public class CreatePostDto {
         this.contents = contents;
         this.recruitmentNum = recruitmentNum;
     }
+
+    public CreatePostDto() {
+    }
 }

@@ -15,7 +15,10 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     boolean existsById(Long id);
 
     @Query("select pa from Participation pa join fetch pa.user u join fetch pa.post p " +
-            "where u.id = userId")
+            "where u.id = :userId")
     List<Participation> findByUserId(@Param("userId") Long userId);
 
+    @Query("select pa from Participation pa join fetch pa.user u join fetch pa.post p " +
+            "where p.id = :postId")
+    List<Participation> findByPostId(@Param("postId") Long postId);
 }

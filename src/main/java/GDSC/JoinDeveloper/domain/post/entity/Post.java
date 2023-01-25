@@ -37,15 +37,17 @@ public class Post {
     private LocalDateTime postTime;
     private Integer recruitmentNum;
     private Integer currentNum;
+    private PersonnelStatus personnelStatus;
 
     @Builder
-    public Post(User user, String title, String contents, LocalDateTime postTime, Integer recruitmentNum, Integer currentNum){
+    public Post(User user, String title, String contents, LocalDateTime postTime, Integer recruitmentNum, Integer currentNum, PersonnelStatus personnelStatus){
         this.user = user;
         this.title = title;
         this.contents = contents;
         this.postTime = postTime;
         this.recruitmentNum = recruitmentNum;
         this.currentNum = currentNum;
+        this.personnelStatus = personnelStatus;
     }
 
     //비즈니스 로직
