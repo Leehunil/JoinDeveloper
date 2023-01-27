@@ -76,4 +76,11 @@ public class PostService {
         postRepository.delete(post);
         return postRepository.existsById(postId);
     }
+
+    //검색
+    public List<PostsResponseDto> search(String word){
+        return postRepository.findByTitleContaining(word).stream()
+                .map(post -> new PostsResponseDto(post))
+                .collect(Collectors.toList());
+    }
 }

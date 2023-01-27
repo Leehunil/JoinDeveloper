@@ -42,7 +42,7 @@ public class InitDb {
             em.persist(user2);
             em.persist(user3);
 
-            Post post1 = new Post(user1,"1","1", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
+            Post post1 = new Post(user1,"이게아닌데","1", LocalDateTime.now(),4,4, PersonnelStatus.POSSIBLE);
             Post post2 = new Post(user2,"2","2", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
             Post post3 = new Post(user3,"3","3", LocalDateTime.now(),4,1, PersonnelStatus.POSSIBLE);
 

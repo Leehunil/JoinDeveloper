@@ -4,6 +4,8 @@ import GDSC.JoinDeveloper.domain.participation.dto.request.ParticipationDto;
 import GDSC.JoinDeveloper.domain.participation.dto.response.ShowPostParUserInfoDto;
 import GDSC.JoinDeveloper.domain.participation.dto.response.ShowUserParInfoDto;
 import GDSC.JoinDeveloper.domain.participation.entity.Participation;
+import GDSC.JoinDeveloper.domain.participation.exception.DuplicateParticipationException;
+import GDSC.JoinDeveloper.domain.participation.exception.OvercapacityException;
 import GDSC.JoinDeveloper.domain.participation.repository.ParticipationRepository;
 import GDSC.JoinDeveloper.domain.post.entity.Post;
 import GDSC.JoinDeveloper.domain.post.repository.PostRepository;
@@ -12,6 +14,7 @@ import GDSC.JoinDeveloper.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.PushBuilder;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +32,8 @@ public class ParticipationService {
     public Boolean saveParticipation(ParticipationDto participationDto){
         User findUser = userRepository.findById(participationDto.getUserId()).get();
         Post findPost = postRepository.findById(participationDto.getPostId()).get();
-
+        checkOvercapacity(findPost.getRecruitmentNum(),findPost.getCurrentNum());
+        checkDuplicateParticipation(participationDto.getUserId(), participationDto.getPostId());
         Participation participation = participationRepository.save(Participation.builder()
                 .user(findUser)
                 .post(findPost)
@@ -53,6 +57,16 @@ public class ParticipationService {
         return participations.stream()
                 .map(participation -> new ShowPostParUserInfoDto(participation))
                 .collect(Collectors.toList());
+    }
+
+    public void checkOvercapacity(Integer recruitNum, Integer currentNum){
+        if(recruitNum.equals(currentNum)){
+            throw OvercapacityException.EXCEPTION;
+        }
+    }
+
+    public void checkDuplicateParticipation(Long userId, Long postId){
+        participationRepository.findByUidAndPid(userId,postId).ifPresent(participation -> {throw DuplicateParticipationException.EXCEPTION;});
     }
 
 }

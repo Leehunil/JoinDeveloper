@@ -21,4 +21,8 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     @Query("select pa from Participation pa join fetch pa.user u join fetch pa.post p " +
             "where p.id = :postId")
     List<Participation> findByPostId(@Param("postId") Long postId);
+
+    @Query("select pa from Participation pa join pa.user u join fetch pa.post p " +
+            "where u.id =:userId and p.id =:postId")
+    Optional<Participation> findByUidAndPid(@Param("userId") Long userId, @Param("postId") Long postId);
 }

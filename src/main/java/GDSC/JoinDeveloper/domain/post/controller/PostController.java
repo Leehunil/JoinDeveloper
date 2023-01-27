@@ -8,6 +8,7 @@ import GDSC.JoinDeveloper.domain.post.service.PostService;
 import GDSC.JoinDeveloper.global.response.DefaultRes;
 import GDSC.JoinDeveloper.global.response.StatusCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +63,7 @@ public class PostController {
                 new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
 
+    //게시물 삭제
     @DeleteMapping("/{postId}/delete")
     public ResponseEntity deletePost(@PathVariable Long postId){
 
@@ -69,6 +71,16 @@ public class PostController {
 
         return bool != true ?
                 new ResponseEntity(DefaultRes.res(StatusCode.OK, "게시물 삭제 완료!"), HttpStatus.OK) :
+                new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
+    }
+
+    //게시물 검색
+    @GetMapping("/search")
+    public ResponseEntity searchPost(@RequestParam String word){
+        List<PostsResponseDto> result = postService.search(word);
+
+        return result != null ?
+                new ResponseEntity(DefaultRes.res(StatusCode.OK, "게시물 검색 완료!", result), HttpStatus.OK) :
                 new ResponseEntity(DefaultRes.res(StatusCode.BAD_REQUEST, "잘못된 요청"), HttpStatus.OK);
     }
 }
