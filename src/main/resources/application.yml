@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3305/joindeveloper
-    username: root
-    password: hunil@3751
+    url: jdbc:mariadb://database-1.cngbgrymmoi7.us-east-1.rds.amazonaws.com:3305/database-1?useUnicode=true&characterEncoding=UTF-8
+    username: hunil
+    password: hunil3751
   jpa:
     hibernate:
       ddl-auto: create
