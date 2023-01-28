@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://joindeveloper.crnv58a7zwkg.ap-northeast-2.rds.amazonaws.com:3306/aws
+    url: jdbc:mariadb://joindeveloper.crnv58a7zwkg.ap-northeast-2.rds.amazonaws.com:3306/joindeveloper?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: hunil
     password: hunil3751
   jpa:
