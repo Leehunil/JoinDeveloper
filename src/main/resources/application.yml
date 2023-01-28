@@ -5,6 +5,7 @@ spring:
     username: hunil
     password: hunil3751
   jpa:
+    generate-ddl: true
     hibernate:
       ddl-auto: update
     properties:
