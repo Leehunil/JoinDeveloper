@@ -15,7 +15,6 @@ public class PostDetailResponseDto {
     private String contents;
     private Integer recruitmentNum;
     private Integer currentNum;
-    private PersonnelStatus personnelStatus;
 
     private String name;
 
@@ -26,7 +25,6 @@ public class PostDetailResponseDto {
         this.contents = post.getContents();
         this.recruitmentNum = post.getRecruitmentNum();
         this.currentNum = post.getCurrentNum();
-        this.personnelStatus = post.getPersonnelStatus();
         this.name = post.getUser().getName();
         this.comments = post.getComments().stream()
                 .map(comment -> new CommentDetailResponseDto(comment))
