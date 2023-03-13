@@ -7,5 +7,6 @@
 - 참여가 된 사용자들의 전화번호가 표시된다.
 
 ## ERD
+<img width="953" alt="image" src="https://user-images.githubusercontent.com/104710245/224756464-0288466f-807b-4ca0-9e76-a3e64073595f.png">
 
 
